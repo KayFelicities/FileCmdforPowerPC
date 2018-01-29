@@ -13,7 +13,6 @@ if getattr(sys, 'frozen', False):
     ZLIB_PATH = os.path.join(sys._MEIPASS, 'zlib.exe')
 else:
     ZLIB_PATH = os.path.join(os.path.split(os.path.realpath(__file__))[0], 'zlib.exe')
-print('zlib path: ', ZLIB_PATH)
 
 
 def get_md5(path):
@@ -45,6 +44,7 @@ def main_proc(file_path):
     os.system('copy ' + ZLIB_PATH + ' ' + os.path.join(work_path, 'zlib.exe'))
     os.chdir(work_path)
     os.system('zlib.exe d ' + os.path.basename(file_path))
+    os.system('del zlib.exe')
     zfile_path = file_path + '.Z'
     post_len = os.path.getsize(zfile_path)
     print('pre size: {pre}, post size: {post}'.format(pre=pre_len, post=post_len))
